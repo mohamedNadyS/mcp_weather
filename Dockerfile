@@ -3,7 +3,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Install dependencies
-RUN pip install fastapi uvicorn requests
+RUN pip install fastapi uvicorn requests python-multipart
 
 # Copy the single file
 COPY app.py .
