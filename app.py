@@ -1,4 +1,3 @@
-# app.py - Complete single file application
 from fastapi import FastAPI, Request, Form
 from fastapi.responses import HTMLResponse
 import requests
@@ -6,7 +5,6 @@ import uuid
 from datetime import datetime
 import os
 
-# All classes in one file
 class Massage:
     def __init__(self, sender, content, metadata=None):
         self.id = str(uuid.uuid4())
@@ -45,8 +43,6 @@ def gweather(city: str) -> str:
     except Exception as e:
         return f"Error: {str(e)}"
 
-# HTML template as string (no external files needed)
-# Using double braces {{}} to escape them from .format()
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
@@ -134,10 +130,8 @@ HTML_TEMPLATE = """
 </html>
 """
 
-# Initialize FastAPI
 app = FastAPI(title="MCP Weather Tool")
 
-# Initialize components
 memory = Memory()
 agent = Agent()
 
@@ -150,7 +144,6 @@ async def form_post(city: str = Form(...)):
     try:
         weather_result = gweather(city)
         
-        # Add to memory
         user_message = Massage("User", f"weather {city}")
         weather_msg = Massage("weatherTool", weather_result)
         memory.add(user_message)
