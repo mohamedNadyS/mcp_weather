@@ -3,17 +3,10 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Install dependencies
-COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install fastapi uvicorn requests
 
-# Copy application files
-COPY . .
+# Copy the single file
+COPY app.py .
 
-# Set environment variables
-ENV PYTHONPATH=/app
-
-# Expose port
-EXPOSE 8000
-
-# Simple command that works
-CMD ["python", "-m", "uvicorn", "mcp_weather.server:app", "--host", "0.0.0.0", "--port", "8000"]
+# Run the application
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
