@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!---->
+    <meta charset="UTF-8">
+    <title>🌤 MCP Weather Tool</title>
+    <meta name="viewport" content = "width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #f0f0f0;
+            background-color: #121212;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        h1{
+            color: #00ffff;
+            text-shadow: 0 0 5px #00ffff , 0 0 10px #00ffff;
+            font-size: 2.5rem;
+        }
+        form {
+            background-color: #1e1e1e;
+            padding: 2rem;
+            gap: 1rem;
+            border-radius: 8px;
+            /*box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);*/
+            width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"] {
+            padding: 0.8rem;
+            width: 250px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        button {
+            padding: 0.8rem;
+            background-color: #00ffff;
+            color: #000;
+            font-weight: bold;
+            box-shadow: 0 0 10px #00ffff, 0 0 11px #00ffff;
+            transition: transform 0.2s, box-shadow 0.3s;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px #00ffff, 0 0 16px #00ffff;
+        }
+        .weather-box {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+            background: rgba(0, 255, 255, 0.5);
+            text-align: center;
+            font-size: 1.3rem;
+        }
+        .footer {
+            margin-top: auto;
+            color: #888;
+            font-size: 0.9rem;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>🌦 MCP Weather Tool</h1>
+    <form method="post">
+        <input type="text" id="city" placeholder="city" required/>
+        <button type="submit">Get Weather</button>
+    </form>
+
+
+    {% if result %}
+        <div class="weather-box">
+            <p>📍 <strong>{{ result_city.title() }}</strong></p>
+            <p>{{ result }}</p>
+        </div>
+    {% endif %}
+    <div class="footer">
+        made by mohamedNadyS using FastAPI + wttr.in
+        <link rel="github repository link" href="https://github.com/mohamedNadyS/mcp_weather">
+  </div>
+</body>
+</html>
