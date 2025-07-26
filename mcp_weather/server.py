@@ -1,10 +1,10 @@
 import fastapi
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
-from mcp_weather.weather import gweather
-from mcp_weather.agent import Agent
-from mcp_weather.memory import Memory
-from mcp_weather.massage import Massage
+from weather import gweather
+from agent import Agent
+from memory import Memory
+from massage import Massage
 
 templates = Jinja2Templates(directory="templates")
 app = fastapi.FastAPI()
