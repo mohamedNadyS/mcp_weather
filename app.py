@@ -46,6 +46,7 @@ def gweather(city: str) -> str:
         return f"Error: {str(e)}"
 
 # HTML template as string (no external files needed)
+# Using double braces {{}} to escape them from .format()
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
@@ -54,7 +55,7 @@ HTML_TEMPLATE = """
     <title>🌤 MCP Weather Tool</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        body {
+        body {{
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             color: #f0f0f0;
             background: linear-gradient(135deg, #0c1445 0%, #1a1a2e 50%, #16213e 100%);
@@ -64,28 +65,28 @@ HTML_TEMPLATE = """
             align-items: center;
             padding: 2rem;
             margin: 0;
-        }
-        h1 {
+        }}
+        h1 {{
             color: #00ffff;
             text-shadow: 0 0 5px #00ffff, 0 0 10px #00ffff;
             font-size: 2.5rem;
             margin-bottom: 2rem;
             text-align: center;
-        }
-        .container {
+        }}
+        .container {{
             background: rgba(30, 30, 30, 0.9);
             border-radius: 15px;
             padding: 2rem;
             box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
             width: 100%;
             max-width: 400px;
-        }
-        form {
+        }}
+        form {{
             display: flex;
             flex-direction: column;
             gap: 1.5rem;
-        }
-        input[type="text"] {
+        }}
+        input[type="text"] {{
             padding: 1rem;
             border: 2px solid rgba(0, 255, 255, 0.3);
             border-radius: 10px;
@@ -93,8 +94,8 @@ HTML_TEMPLATE = """
             color: #f0f0f0;
             font-size: 1.1rem;
             outline: none;
-        }
-        button {
+        }}
+        button {{
             padding: 1rem;
             background: linear-gradient(45deg, #00ffff, #0080ff);
             color: #000;
@@ -103,8 +104,8 @@ HTML_TEMPLATE = """
             border-radius: 10px;
             font-size: 1.1rem;
             cursor: pointer;
-        }
-        .weather-box {
+        }}
+        .weather-box {{
             margin-top: 2rem;
             padding: 2rem;
             border-radius: 15px;
@@ -112,12 +113,12 @@ HTML_TEMPLATE = """
             border: 1px solid rgba(0, 255, 255, 0.2);
             text-align: center;
             font-size: 1.2rem;
-        }
-        .weather-box h3 {
+        }}
+        .weather-box h3 {{
             color: #00ffff;
             margin: 0 0 1rem 0;
             font-size: 1.5rem;
-        }
+        }}
     </style>
 </head>
 <body>
