@@ -2,4 +2,3 @@
 builder = "dockerfile"
 
 [deploy]
-startCommand = "uvicorn mcp_weather.server:app --host 0.0.0.0 --port $PORT"
