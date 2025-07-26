@@ -14,79 +14,141 @@
             flex-direction: column;
             align-items: center;
             padding: 2rem;
+            margin: 0;
         }
         h1{
             color: #00ffff;
             text-shadow: 0 0 5px #00ffff , 0 0 10px #00ffff;
             font-size: 2.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        
+        }
+
+        .container {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            width: 100%;
+            max-width: 400px;
         }
         form {
-            background-color: #1e1e1e;
-            padding: 2rem;
-            gap: 1rem;
-            border-radius: 8px;
-            /*box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);*/
-            width: 300px;
+            gap: 1.5rem;
             display: flex;
             flex-direction: column;
         }
         input[type="text"] {
-            padding: 0.8rem;
-            width: 250px;
-            border: none;
-            border-radius: 8px;
+            padding: 1rem;
+            border: 2px solid rgba(0, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #f0f0f0;
             font-size: 1.1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        input[type="text"]:focus {
+            border-color: #00ffff;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
         }
         button {
-            padding: 0.8rem;
-            background-color: #00ffff;
+            padding: 1rem;
+            background: linear-gradient(45deg, #00ffff, #0080ff);
             color: #000;
             font-weight: bold;
-            box-shadow: 0 0 10px #00ffff, 0 0 11px #00ffff;
-            transition: transform 0.2s, box-shadow 0.3s;
             border: none;
-            border-radius: 8px;
-            font-size: 1rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
             cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
         button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 15px #00ffff, 0 0 16px #00ffff;
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
         }
         .weather-box {
             margin-top: 2rem;
-            padding: 1.5rem;
-            border-radius: 12px;
+            padding: 2rem;
+            border-radius: 15px;
             box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
-            background: rgba(0, 255, 255, 0.5);
+            background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 128, 255, 0.1));
+            border: 1px solid rgba(0, 255, 255, 0.2);
             text-align: center;
+            font-size: 1.2rem;
+            backdrop-filter: blur(10px);
+        }
+        .weather-box h3 {
+            margin:0 0 1rem 0;
+            font-size: 1.5rem;
+            color: #00ffff;
+        }
+        .weather-info {
             font-size: 1.3rem;
+            color: #ffffff;
+            margin: 1rem 0;
         }
         .footer {
-            margin-top: auto;
+            margin-top: 3rem;
             color: #888;
             font-size: 0.9rem;
             padding: 1rem;
+            text-align: center;
+        }
+        .footer a {
+            color: #00ffff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .container {
+                padding: 1.5rem;
+            }
+            input[type="text"], button {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
     <h1>🌦 MCP Weather Tool</h1>
-    <form method="post">
-        <input type="text" id="city" placeholder="city" required/>
-        <button type="submit">Get Weather</button>
-    </form>
+    
+    <div class="container">
+        <form method="post">
+            <input type="text" 
+                   name="city" 
+                   id="city" 
+                   placeholder="Enter city name (e.g., Cairo, London)" 
+                   required
+                   value="{{ request.form.get('city', '') if request.form else '' }}"/>
+            <button type="submit">Get Weather ⛅</button>
+        </form>
 
-
-    {% if result %}
+        {% if result %}
         <div class="weather-box">
-            <p>📍 <strong>{{ result_city.title() }}</strong></p>
-            <p>{{ result }}</p>
+            <h3>📍 {{ result_city.title() }}</h3>
+            <div class="weather-info">{{ result }}</div>
         </div>
-    {% endif %}
+        {% endif %}
+    </div>
+
     <div class="footer">
-        made by mohamedNadyS using FastAPI + wttr.in
-        <link rel="github repository link" href="https://github.com/mohamedNadyS/mcp_weather">
-  </div>
+        Made by mohamedNadyS using FastAPI + wttr.in<br>
+        <a href="https://github.com/mohamedNadyS/mcp_weather" target="_blank">
+            🔗 View on GitHub
+        </a>
+    </div>
 </body>
 </html>
